@@ -1,0 +1,48 @@
+Resumen así mas o menos de aplicación covid.
+
+
+Primero, ver la api que hay, que con una sola llamada recupero todo. Creación de datos.
+
+Después, investigación de retrofit con corutinas y work moderno. Desde hace poco, retrofit es compatible con ello, 
+Tambien mire CourutineINfoWorker, que se podra usar para otras cosas. Pero retrofit 2.6 ya incluye todo lo necesario,
+
+en el coviddtservice, el @GET es suspend fun getInfo(),  el repository se simplifica muchisimo, ahora solo tiene dos lineas: 
+    var client: CovidDtService = createRetrofitWS()
+
+    suspend fun getAllData() = client.getInfo()
+	
+ya no es necesario llamar a enqueue y crear callbacks.
+
+LiveData’s building block already provides a Coroutine Scope where 
+
+En el ViewModel, con el IO Dispatcher dado que vamos a llamar a una función de red. El viewmodel:
+
+val obtData = liveData(Dispatchers.IO) {
+    val infoResponse = repository.getAllData()
+
+    emit(infoResponse)
+}
+	emit hace el seteo al livedata, que está creado en el viewmodel
+
+
+Mas cosas por hacer:
+
+-Los injections del viewModel (lo ultimo),
+-guardar en room la info. si falla la llamada, mostrar ultimos datos.   ¿Llamar solo si la fecha es distinta a la almacenada? No, no interesa, por si actualizan.
+
+XXX-ver como representar los datos, sin que haya que hacer nada en la activity.Dentro del fragment pintar los datos. En el fragmentXX  esto ASI A LO BRUTO ESTARIA
+
+-Hacerlo bonito.
+-mensaje si falla. Boton de recargar.
+-fecha en pantalla
+
+
+
+segundo día. Metiendo room, viendo claro que tiene que ser en el repositorio, si falla, donde pedir info a bbdd. Mirando todo los daos de room,
+				 viendo que para ello va a ser necesario las injecciones (ahora estoy haciendo chapu y creando la base de 
+					datos en la clase Application, porque para crearse necesita un contexto. El repositorio se crea en el viewmodel
+						y claro no queremos tener contexto en viewmodel nunca. Entonces en el viewmodel cojo la db de Application.
+	
+
+	
+	

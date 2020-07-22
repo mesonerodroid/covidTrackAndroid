@@ -9,16 +9,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
 import com.smesonero.covidtrack.viewmodel.CovidViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.first_fragment.*
 import java.text.NumberFormat
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FirstFragment : Fragment() {
 
     val TAG = "FIRST FRAGMENT"
+    lateinit var dao :CovidDataDao
     companion object {
         fun newInstance() = FirstFragment()
     }
+
+//    private val exampleViewModel: ExampleViewModel by viewModels()
+
+    @Inject
+    fun Repository(pokeDao: CovidDataDao) {
+        Log.e("first fragment", "inject del dao: "+pokeDao)
+        dao = pokeDao
+    }
+
 
     private lateinit var viewModel: CovidViewModel
 
@@ -33,6 +47,7 @@ class FirstFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(CovidViewModel::class.java)
 
+//        viewModel.setDao(dao)
         viewModel.covidLIvedata.observe(viewLifecycleOwner, Observer {
 
             //Log.e("FIRSTFRAGMENT" , "observer, cambio: "+it.isSuccessful + " "+it)

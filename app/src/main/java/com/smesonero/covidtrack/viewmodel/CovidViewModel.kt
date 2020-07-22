@@ -1,6 +1,9 @@
 package com.smesonero.covidtrack.viewmodel
 
 import android.util.Log
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.smesonero.covidtrack.App
@@ -8,9 +11,17 @@ import com.smesonero.covidtrack.service.CovidRepository
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 
+
+
+//class CovidViewModel @ViewModelInject constructor(
+//    private val repo: CovidRepository,
+//    @Assisted private val savedStateHandle: SavedStateHandle
+//) : ViewModel() {
+
+//}
 class CovidViewModel : ViewModel() {
-    val db = App.dbb
-    val dao = db.covidDataDao()
+//    val db = App.dbb
+//    val dao = db.covidDataDao()
     lateinit var repository: CovidRepository
 
 //    init {
@@ -43,6 +54,10 @@ class CovidViewModel : ViewModel() {
 
     }
     private  fun initRepository(){
-        repository = CovidRepository(dao)
+        repository = CovidRepository()
     }
+
+//    fun setDao(dao: CovidDataDao) {
+//
+//    }
 }

@@ -2,7 +2,9 @@ package com.smesonero.covidtrack
 
 import android.app.Application
 import com.smesonero.covidtrack.ddbb.CovidDatabase
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class App : Application()  {
 //    @Inject
 //    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
@@ -15,10 +17,10 @@ class App : Application()  {
 
     override fun onCreate() {
         super.onCreate()
-        getDb()
+//        getDb()
     }
-    public fun getDb(): CovidDatabase {
-        dbb = CovidDatabase.getInstance(applicationContext)
-        return dbb
-    }
+//    public fun getDb(): CovidDatabase {
+//        dbb = CovidDatabase.getInstance(applicationContext)
+//        return dbb
+//    }
 }

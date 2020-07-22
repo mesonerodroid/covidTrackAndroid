@@ -3,23 +3,40 @@ package com.smesonero.covidtrack.service
 import android.util.Log
 import com.smesonero.covidtrack.DataClassCountry
 import com.smesonero.covidtrack.DataClassCovid
+import com.smesonero.covidtrack.ddbb.CovidDatabase
 import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
 import com.smesonero.covidtrack.ddbb.entities.CovidDataEntity
 import com.smesonero.covidtrack.model_network.CovidInfoData
-import java.lang.Exception
 import java.text.NumberFormat
+import javax.inject.Inject
 
-class CovidRepository(private val dao : CovidDataDao) {
+//@AndroidEntryPoint
+class CovidRepository() {
 
 
     var client: CovidDtService = createRetrofitWS()
-    val all = dao.getAll()
+
+    lateinit var daoo :CovidDataDao
+
+    lateinit var db : CovidDatabase
+    @Inject
+    public fun CovidRepository(covidDataDao: CovidDataDao) {       //parece que se debe llamar igual
+       // db = covidDatabase
+        daoo = covidDataDao
+    }
+
+    @Inject     //no va a funcionar
+    fun Repository(pokeDao: CovidDataDao) {
+        Log.e("REPOSITORY", "inject del dao: "+pokeDao)
+        daoo = pokeDao
+    }
 
 
     //lo suyo seria encadenar esta con el check.
     suspend fun getAllData(): DataClassCovid
 //        try{
     {
+//        daoo = AppModule.db.covidDataDao()
         lateinit var dataclass:DataClassCovid
         try {
             //Intentar obtener datos más actualizados de servidor
@@ -45,12 +62,12 @@ class CovidRepository(private val dao : CovidDataDao) {
 
     private fun obtainFromDb(): DataClassCovid {
 
-        if (dao.getAll().size!=0){
+        if (daoo.getAll().size!=0){
 
             Log.e("repository", "obtencion de db ")
             lateinit var ret :DataClassCovid
 
-            var dataBd = dao.getAll().get(0)
+            var dataBd = daoo.getAll().get(0)
             var listaDataCountries : List<DataClassCountry> = listOf()
 
             ret = DataClassCovid(dataBd.date, dataBd.newconfirmed, dataBd.totalconfirmed, dataBd.newdeaths,
@@ -107,15 +124,15 @@ class CovidRepository(private val dao : CovidDataDao) {
         var data = infoResponse
         var body = infoResponse
         Log.e("repository", "222" )
-        if (dao.getAll().size==0){
+        if (daoo.getAll().size==0){
             Log.e("repository", "no hay, insertar" )
             insertData(data)
 //            covidInfInsert.Date= body?.Date
         }
-        else if (dao.getAll().size!=0 && dao.getAll().get(0).date!=null && !data.date.equals(dao.getAll().get(0).date)){
+        else if (daoo.getAll().size!=0 && daoo.getAll().get(0).date!=null && !data.date.equals(daoo.getAll().get(0).date)){
 
             Log.e("repository", "ES DISTINTA, borrar y actuali ")
-            dao.deleteAll()
+            daoo.deleteAll()
             insertData(data)
         }
         else{
@@ -134,6 +151,6 @@ class CovidRepository(private val dao : CovidDataDao) {
             data.newRecovered,
             data.totalRecovered
         )
-        dao.insertAll(covidInfInsert)
+        daoo.insertAll(covidInfInsert)
     }
 }

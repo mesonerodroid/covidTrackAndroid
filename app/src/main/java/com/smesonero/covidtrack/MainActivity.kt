@@ -9,10 +9,20 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
 import com.smesonero.covidtrack.viewmodel.CovidViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+
+    @Inject
+    fun Repository(pokeDao: CovidDataDao) {
+        Log.e("mainactovituy", "inject del dao: "+pokeDao.getAll().size)
+
+    }
 
    lateinit var bottomNavigationView : BottomNavigationView
 

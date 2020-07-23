@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.Observer
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
-import com.smesonero.covidtrack.dinjection.MyViewModelFactory
 import com.smesonero.covidtrack.service.CovidRepository
 import com.smesonero.covidtrack.viewmodel.CovidViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,11 +37,16 @@ class FirstFragment : Fragment() {
     }
 
     //injeccion del view, model, a través de su factory, creando a su vez el repository
-    val viewModel: CovidViewModel by viewModels{
-        Log.e(TAG, "byviewmodel, obteniendo")
-        MyViewModelFactory(this, CovidRepository(dao),
-            null)
-    }
+//    val viewModel: CovidViewModel by viewModels{
+//        Log.e(TAG, "byviewmodel, obteniendo")
+//        MyViewModelFactory(this, CovidRepository(dao),
+//            null)
+//    }
+
+    //INJECTION a traves de hilt, sin factory
+     val viewModel: CovidViewModel by viewModels()
+
+
 
 //    private val exampleViewModel: ExampleViewModel by viewModels()
 

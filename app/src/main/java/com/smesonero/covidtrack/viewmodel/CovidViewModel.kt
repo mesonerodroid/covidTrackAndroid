@@ -1,6 +1,9 @@
 package com.smesonero.covidtrack.viewmodel
 
 import android.util.Log
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -16,10 +19,15 @@ import java.lang.Exception
 //) : ViewModel() {
 
 //}
-class CovidViewModel(repo: CovidRepository, handle: SavedStateHandle) : ViewModel() {
+//class CovidViewModel(repo: CovidRepository, handle: SavedStateHandle) : ViewModel() {
+class CovidViewModel @ViewModelInject constructor(
+    private val repository: CovidRepository,
+    @Assisted private val savedStateHandle: SavedStateHandle
+) : ViewModel(), LifecycleObserver {
+
 //    val db = App.dbb
 //    val dao = db.covidDataDao()
-      var repository: CovidRepository =repo
+//      var repository: CovidRepository =repo
 
 //    init {
 //        Log.e("VIEW MODEL", "init viewmodel ,init repository")
@@ -30,7 +38,7 @@ class CovidViewModel(repo: CovidRepository, handle: SavedStateHandle) : ViewMode
 
         try {
 //            initRepository()
-            val infoResponse = this@CovidViewModel.repository.getAllData()      //pide los datos al repositorio. Cómo los obtenga, es transparente
+            val infoResponse = repository.getAllData()      //pide los datos al repositorio. Cómo los obtenga, es transparente
             //repository.check(infoResponse)      //que esto devuelva los datos en formato bueno final, de la base de datos. no el dao de network.
 //            repository.checkupdate(infoResponse.body())
             emit(infoResponse)

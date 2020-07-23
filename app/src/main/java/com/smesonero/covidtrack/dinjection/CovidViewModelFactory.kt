@@ -8,6 +8,7 @@ import androidx.savedstate.SavedStateRegistryOwner
 import com.smesonero.covidtrack.service.CovidRepository
 import com.smesonero.covidtrack.viewmodel.CovidViewModel
 
+//Con hilt, no necesario
 class MyViewModelFactory(
     owner: SavedStateRegistryOwner,
     private val repository: CovidRepository,

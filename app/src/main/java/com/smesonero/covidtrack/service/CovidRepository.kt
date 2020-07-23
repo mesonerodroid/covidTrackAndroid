@@ -8,9 +8,12 @@ import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
 import com.smesonero.covidtrack.ddbb.entities.CovidDataEntity
 import com.smesonero.covidtrack.model_network.CovidInfoData
 import java.text.NumberFormat
+import javax.inject.Inject
 
-// ahora no quiero que sea injectable, lo creo en la factory del viewmodel
-class CovidRepository(dao: CovidDataDao) {
+// antes no quería que fuera injectable, lo creaba en la factory del viewmodel
+// ahora si quiero que sea injectable, ya no uso factory
+
+class CovidRepository @Inject constructor(dao: CovidDataDao) {
     // we can use the application context in init or field initialisation
 
     var client: CovidDtService = createRetrofitWS()

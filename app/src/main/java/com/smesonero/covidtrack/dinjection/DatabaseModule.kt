@@ -14,8 +14,6 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 public class DataBaseModule {
 
-
-
     @Provides
     @Singleton
     fun providePokemonDB(application: Application?): CovidDatabase {

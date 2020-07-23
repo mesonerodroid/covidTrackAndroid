@@ -44,5 +44,22 @@ segundo día. Metiendo room, viendo claro que tiene que ser en el repositorio, s
 						y claro no queremos tener contexto en viewmodel nunca. Entonces en el viewmodel cojo la db de Application.
 	
 
+siguientes dias. MIrando varias páginas, viendo como funciona hilt. Hay inyecciones diferenciasas.
+
+1. Para la database, es necesario crear un DatabaseModule que incluya @module @installin y metodo con @provides para proporcionar el dao
+
+2. La inyeccion del viewmodel. Para crear al mismo timpo el repositorio, que es lo gordo, estuve mas tiempo. Intente al principio inyectarlo. 
+	Pero al final, con un ViewModelFactory, se puede inyectar el viewmodel instanciando en ese mismo momento la clase repositorio y lo que haga falta.
+	Además aqui ya paso el dao inyectado en el fragmento, al repositorio para que pueda acceder a consultar los datos.
+	Esto usando "by viewModels", hubo que meter dependencia por ahi, revisar gradle que fui metiendo bastantes cosas necesarias.
+	ByViewmodels es extensión de extensiones KTX .
+	
+	-->NO hacía falta factory, con hilt ya no hacen falta nunca. Sí que pongo el inject basico en el repositorio, si no daria error.
+		ademas en lo que he visto tiene un  @Assisted private val savedStateHandle: SavedStateHandle.  ESto es necesario anotar para la dependencia SavedStateHandle
+	
+3. Para la inyeccion basica, simplemente con un constructor vale.
+		class CovidRepository @Inject constructor(dao: CovidDataDao) {
+
+	
 	
 	

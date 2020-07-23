@@ -19,7 +19,7 @@ public class DataBaseModule {
     @Provides
     @Singleton
     fun providePokemonDB(application: Application?): CovidDatabase {
-        return Room.databaseBuilder(application!!, CovidDatabase::class.java, "Favorite Database")
+        return Room.databaseBuilder(application!!, CovidDatabase::class.java, "Database")
             .fallbackToDestructiveMigration()
             .allowMainThreadQueries()
             .build()

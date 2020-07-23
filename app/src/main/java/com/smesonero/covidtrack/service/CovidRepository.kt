@@ -8,28 +8,27 @@ import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
 import com.smesonero.covidtrack.ddbb.entities.CovidDataEntity
 import com.smesonero.covidtrack.model_network.CovidInfoData
 import java.text.NumberFormat
-import javax.inject.Inject
 
-//@AndroidEntryPoint
-class CovidRepository() {
-
+// ahora no quiero que sea injectable, lo creo en la factory del viewmodel
+class CovidRepository(dao: CovidDataDao) {
+    // we can use the application context in init or field initialisation
 
     var client: CovidDtService = createRetrofitWS()
 
-    lateinit var daoo :CovidDataDao
+    var daoo = dao
 
     lateinit var db : CovidDatabase
-    @Inject
-    public fun CovidRepository(covidDataDao: CovidDataDao) {       //parece que se debe llamar igual
-       // db = covidDatabase
-        daoo = covidDataDao
-    }
+//    @Inject
+//    public fun CovidRepository(covidDataDao: CovidDataDao) {       //parece que se debe llamar igual
+//       // db = covidDatabase
+//        daoo = covidDataDao
+//    }
 
-    @Inject     //no va a funcionar
-    fun Repository(pokeDao: CovidDataDao) {
-        Log.e("REPOSITORY", "inject del dao: "+pokeDao)
-        daoo = pokeDao
-    }
+//    @Inject     //no va a funcionar
+//    fun Repository(pokeDao: CovidDataDao) {
+//        Log.e("REPOSITORY", "inject del dao: "+pokeDao)
+//        daoo = pokeDao
+//    }
 
 
     //lo suyo seria encadenar esta con el check.

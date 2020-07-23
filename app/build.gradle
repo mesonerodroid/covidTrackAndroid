@@ -10,6 +10,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 
     defaultConfig {
         applicationId "com.smesonero.covidtrack"
@@ -36,6 +39,10 @@ android {
 
         }
     }
+}
+
+kapt {
+    generateStubs = true
 }
 
 dependencies {

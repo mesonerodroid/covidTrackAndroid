@@ -1,6 +1,5 @@
 package com.smesonero.covidtrack
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
+import com.smesonero.covidtrack.dinjection.MyViewModelFactory
+import com.smesonero.covidtrack.service.CovidRepository
 import com.smesonero.covidtrack.viewmodel.CovidViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.first_fragment.*
-import java.text.NumberFormat
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -21,20 +22,39 @@ class FirstFragment : Fragment() {
 
     val TAG = "FIRST FRAGMENT"
     lateinit var dao :CovidDataDao
+    lateinit var repository: CovidRepository
     companion object {
         fun newInstance() = FirstFragment()
     }
 
-//    private val exampleViewModel: ExampleViewModel by viewModels()
-
     @Inject
-    fun Repository(pokeDao: CovidDataDao) {
+    fun covidDao(pokeDao: CovidDataDao) {
         Log.e("first fragment", "inject del dao: "+pokeDao)
         dao = pokeDao
     }
 
+    //injeccion del view, model, a través de su factory, creando a su vez el repository
+    val viewModel: CovidViewModel by viewModels{
+        Log.e(TAG, "byviewmodel, obteniendo")
+        MyViewModelFactory(this, CovidRepository(dao),
+            null)
+    }
 
-    private lateinit var viewModel: CovidViewModel
+//    private val exampleViewModel: ExampleViewModel by viewModels()
+
+
+//ahora no lo inyecto lo creo en la factory de viewmodel
+//    @Inject
+//    fun Repository(repo: CovidRepository) {
+//        Log.e("first fragment", "inject del repo: "+repo)
+//        repository = repo
+//    }
+
+//    @Inject lateinit var repository: CovidRepository
+
+
+
+//    private lateinit var viewModel: CovidViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +65,8 @@ class FirstFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CovidViewModel::class.java)
+//        viewModel = ViewModelProviders.of(this).get(CovidViewModel::class.java)
+
 
 //        viewModel.setDao(dao)
         viewModel.covidLIvedata.observe(viewLifecycleOwner, Observer {

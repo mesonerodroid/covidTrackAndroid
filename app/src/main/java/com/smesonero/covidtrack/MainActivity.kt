@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
 
     @Inject
-    fun Repository(pokeDao: CovidDataDao) {
+    fun covidDao(pokeDao: CovidDataDao) {
         Log.e("mainactovituy", "inject del dao: "+pokeDao.getAll().size)
 
     }
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         var navHostFragment :NavHostFragment = this.getSupportFragmentManager().findFragmentById(R.id.nav_base_fragment) as NavHostFragment
         NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.navController)
 
-        viewModel = ViewModelProviders.of(this).get(CovidViewModel::class.java)
+        //viewModel = ViewModelProviders.of(this).get(CovidViewModel::class.java)
 
     }
 

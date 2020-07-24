@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <item android:id="@+id/blankFragment"
-        android:title="First"
+        android:title="Global"
         app:showAsAction="always"
         android:orderInCategory="1"
         android:icon="@drawable/ic_bar_chart"/>
 
     <item android:id="@+id/secondFragment"
-        android:title="Second"
+        android:title="Countries"
         app:showAsAction="always"
         android:orderInCategory="2"
         android:icon="@drawable/ic_pie_chart"/>
 
 
     <item android:id="@+id/thirdFragment"
-        android:title="Third"
+        android:title="My country"
         app:showAsAction="always"
         android:orderInCategory="2"
         android:icon="@drawable/ic_more_horizontal"/>

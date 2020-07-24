@@ -25,7 +25,6 @@ class FirstFragment : Fragment() {
 
     val TAG = "FIRST FRAGMENT"
     lateinit var dao :CovidDataDao
-    lateinit var repository: CovidRepository
     companion object {
         fun newInstance() = FirstFragment()
     }

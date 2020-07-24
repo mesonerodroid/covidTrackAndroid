@@ -62,4 +62,14 @@ siguientes dias. MIrando varias páginas, viendo como funciona hilt. Hay inyecci
 
 	
 	
-	
+
+Ahora pienso seguir con los otros fragmentos. Creare otro viewmodel, aunque el objeto que use sea el mismo.... 	
+
+
+
+en el segundo, uso el mismo viewmodel, ya que es la misma peticion, aunque podría crear otro.,
+Creo un nuevo metodo en lugar de getAll, getCountryINfo o algo así.  El repositorio se va a encargar de obtener la información que se está solicitando,
+sin pasar los datos globales, que aquí no son necesarios ni se tienen por qué conocer. Es decir, en este fragmento, sólo vamos a utilizar 
+para mostrar los datos la clase DataCountryList (Clase del modelo del dominio, del domain model, no utilizo directamente los DTO de retrofit o de la 
+base de datos, sino que están desacoplados de estos)
+

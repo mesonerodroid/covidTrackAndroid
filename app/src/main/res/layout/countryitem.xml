@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/country_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="nombre country 123456"
+        android:maxLines="1"
+        android:maxLength="15"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/country_newcases"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="5dp"
+        android:text="123.456"/>
+    <TextView
+        android:id="@+id/country_totalcases"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="5dp"
+        android:text="1.234.567"/>
+
+    <TextView
+        android:id="@+id/country_newdeath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="5dp"
+        android:text="1456"/>
+    <TextView
+        android:id="@+id/country_totaldeath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="5dp"
+        android:text="12.345"/>
+
+</LinearLayout>

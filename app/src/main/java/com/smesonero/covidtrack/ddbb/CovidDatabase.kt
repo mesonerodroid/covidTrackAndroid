@@ -8,13 +8,16 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import com.smesonero.covidtrack.ddbb.dao.CountryDataDao
 import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
+import com.smesonero.covidtrack.ddbb.entities.CountryDbEntity
 import com.smesonero.covidtrack.ddbb.entities.CovidDataEntity
 
-@Database(entities = arrayOf(CovidDataEntity::class), version = 3)
+@Database(entities = arrayOf(CovidDataEntity::class, CountryDbEntity::class), version = 4)
 abstract class CovidDatabase : RoomDatabase() {
 
     abstract fun covidDataDao(): CovidDataDao
+    abstract fun covidCountryDao(): CountryDataDao
 
     companion object {
         private var instance: CovidDatabase? = null

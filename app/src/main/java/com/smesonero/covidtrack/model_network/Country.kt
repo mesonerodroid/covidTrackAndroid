@@ -1,6 +1,7 @@
 package com.smesonero.covidtrack.model_network
 
 data class Country(
+    val Date : String,
     val Country : String,
     val CountryCode : String,
     val NewConfirmed: String,

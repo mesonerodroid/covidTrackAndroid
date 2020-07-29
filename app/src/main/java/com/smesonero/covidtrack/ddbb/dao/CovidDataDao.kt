@@ -6,7 +6,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.smesonero.covidtrack.ddbb.entities.CovidDataEntity
+import com.smesonero.covidtrack.ddbb.db_entities.CovidDataEntity
 
 @Dao
 interface CovidDataDao {

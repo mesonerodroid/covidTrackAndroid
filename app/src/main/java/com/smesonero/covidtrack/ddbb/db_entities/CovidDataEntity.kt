@@ -1,4 +1,4 @@
-package com.smesonero.covidtrack.ddbb.entities
+package com.smesonero.covidtrack.ddbb.db_entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

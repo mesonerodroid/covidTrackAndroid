@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/blankFragment"
-        android:name="com.smesonero.covidtrack.FirstFragment"
+        android:name="com.smesonero.covidtrack.ui.fragment.FirstFragment"
         android:label="blank_fragment"
         tools:layout="@layout/first_fragment" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.smesonero.covidtrack.SecondFragment"
+        android:name="com.smesonero.covidtrack.ui.fragment.SecondFragment"
         android:label="second_fragment"
         tools:layout="@layout/second_fragment" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/thirdFragment"
-        android:name="com.smesonero.covidtrack.ThirdFragment"
+        android:name="com.smesonero.covidtrack.ui.fragment.ThirdFragment"
         android:label="fragment_third"
         tools:layout="@layout/fragment_third" >
         <action

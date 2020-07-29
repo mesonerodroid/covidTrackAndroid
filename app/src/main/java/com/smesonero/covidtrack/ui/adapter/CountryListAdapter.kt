@@ -1,13 +1,11 @@
-package com.smesonero.covidtrack.ui
+package com.smesonero.covidtrack.ui.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
-import com.smesonero.covidtrack.DataClassCountry
+import com.smesonero.covidtrack.domain_model.DataClassCountry
 import com.smesonero.covidtrack.R
 
 class CountryListAdapter(private val list: List<DataClassCountry>)
@@ -18,7 +16,10 @@ class CountryListAdapter(private val list: List<DataClassCountry>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         ctx = parent.context
-        return CountryViewHolder(inflater, parent)
+        return CountryViewHolder(
+            inflater,
+            parent
+        )
     }
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {

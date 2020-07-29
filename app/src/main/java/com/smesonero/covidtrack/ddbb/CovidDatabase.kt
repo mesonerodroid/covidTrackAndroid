@@ -3,15 +3,11 @@ package com.smesonero.covidtrack.ddbb
 import android.content.Context
 import android.util.Log
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import com.smesonero.covidtrack.ddbb.dao.CountryDataDao
 import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
-import com.smesonero.covidtrack.ddbb.entities.CountryDbEntity
-import com.smesonero.covidtrack.ddbb.entities.CovidDataEntity
+import com.smesonero.covidtrack.ddbb.db_entities.CountryDbEntity
+import com.smesonero.covidtrack.ddbb.db_entities.CovidDataEntity
 
 @Database(entities = arrayOf(CovidDataEntity::class, CountryDbEntity::class), version = 4)
 abstract class CovidDatabase : RoomDatabase() {

@@ -3,8 +3,7 @@ package com.smesonero.covidtrack.ddbb.dao
 
 
 import androidx.room.*
-import com.smesonero.covidtrack.ddbb.entities.CountryDbEntity
-import com.smesonero.covidtrack.ddbb.entities.CovidDataEntity
+import com.smesonero.covidtrack.ddbb.db_entities.CountryDbEntity
 
 @Dao
 interface CountryDataDao {

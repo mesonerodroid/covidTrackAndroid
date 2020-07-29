@@ -1,6 +1,4 @@
-package com.smesonero.covidtrack
-
-import com.smesonero.covidtrack.model_network.CovidInfoData
+package com.smesonero.covidtrack.domain_model
 
 
 data class DataClassCovid(

@@ -1,4 +1,4 @@
-package com.smesonero.covidtrack
+package com.smesonero.covidtrack.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smesonero.covidtrack.domain_model.DataClassCountry
+import com.smesonero.covidtrack.domain_model.DataClassCovid
+import com.smesonero.covidtrack.R
 import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
-import com.smesonero.covidtrack.ui.CountryListAdapter
+import com.smesonero.covidtrack.ui.adapter.CountryListAdapter
 import com.smesonero.covidtrack.viewmodel.CovidViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.first_fragment.*
 import kotlinx.android.synthetic.main.second_fragment.*
 import javax.inject.Inject
 
@@ -71,7 +73,9 @@ class SecondFragment : Fragment() {
 
         countries_recy.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = CountryListAdapter(dataCountryList)
+            adapter = CountryListAdapter(
+                dataCountryList
+            )
         }
 
 
@@ -86,16 +90,51 @@ class SecondFragment : Fragment() {
 
     private fun createDummy() {
 
-        var countryDummy = DataClassCountry("11","africa del sur y remotamente", "aa", "69.000" , "4.500.000","1.507", "635.000", "a", "a")
+        var countryDummy =
+            DataClassCountry(
+                "11",
+                "africa del sur y remotamente",
+                "aa",
+                "69.000",
+                "4.500.000",
+                "1.507",
+                "635.000",
+                "a",
+                "a"
+            )
         dataCountryList.add(countryDummy)
-        var countryDummy2 = DataClassCountry("11 ","Polinesia francesa", "aa", "11.000" , "559.000","27", "1.000", "a", "a")
+        var countryDummy2 =
+            DataClassCountry(
+                "11 ",
+                "Polinesia francesa",
+                "aa",
+                "11.000",
+                "559.000",
+                "27",
+                "1.000",
+                "a",
+                "a"
+            )
         dataCountryList.add(countryDummy2)
 
-        var countryDummy3 = DataClassCountry("12", "Portugal", "aa", "1" , "2","3", "4", "a", "a")
+        var countryDummy3 =
+            DataClassCountry(
+                "12",
+                "Portugal",
+                "aa",
+                "1",
+                "2",
+                "3",
+                "4",
+                "a",
+                "a"
+            )
         dataCountryList.add(countryDummy3)
         countries_recy.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = CountryListAdapter(dataCountryList)
+            adapter = CountryListAdapter(
+                dataCountryList
+            )
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.smesonero.covidtrack
+package com.smesonero.covidtrack.domain_model
 
 
 data class DataClassCountryList(

@@ -1,14 +1,14 @@
 package com.smesonero.covidtrack.service
 
 import android.util.Log
-import com.smesonero.covidtrack.DataClassCountry
-import com.smesonero.covidtrack.DataClassCountryList
-import com.smesonero.covidtrack.DataClassCovid
+import com.smesonero.covidtrack.domain_model.DataClassCountry
+import com.smesonero.covidtrack.domain_model.DataClassCountryList
+import com.smesonero.covidtrack.domain_model.DataClassCovid
 import com.smesonero.covidtrack.ddbb.CovidDatabase
 import com.smesonero.covidtrack.ddbb.dao.CountryDataDao
 import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
-import com.smesonero.covidtrack.ddbb.entities.CountryDbEntity
-import com.smesonero.covidtrack.ddbb.entities.CovidDataEntity
+import com.smesonero.covidtrack.ddbb.db_entities.CountryDbEntity
+import com.smesonero.covidtrack.ddbb.db_entities.CovidDataEntity
 import com.smesonero.covidtrack.model_network.CovidInfoData
 import java.text.NumberFormat
 import javax.inject.Inject
@@ -45,7 +45,7 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
 //        try{
     {
 //        daoo = AppModule.db.covidDataDao()
-        lateinit var dataclass:DataClassCovid
+        lateinit var dataclass: DataClassCovid
         try {
             //Intentar obtener datos más actualizados de servidor
             var respuesta = client.getInfo()
@@ -106,7 +106,7 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
         if (daoo.getAll().size!=0){
 
             Log.e("repository", "obtencion de db ")
-            lateinit var ret :DataClassCovid
+            lateinit var ret : DataClassCovid
 
             var dataBd = daoo.getAll().get(0)
 //            var listaDataCountries : List<DataClassCountry> = listOf()
@@ -117,27 +117,39 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
 
             countriesDb.forEach {
 
-                var country :DataClassCountry = DataClassCountry(
-                    "",
-                    it.name,
-                    "",
-                    it.newconfirmed,
-                    it.totalconfirmed,
-                    it.newdeaths,
-                    it.totaldeaths,
-                    it.newrecovered,
-                    it.totalrecovered
-                )
+                var country : DataClassCountry =
+                    DataClassCountry(
+                        "",
+                        it.name,
+                        "",
+                        it.newconfirmed,
+                        it.totalconfirmed,
+                        it.newdeaths,
+                        it.totaldeaths,
+                        it.newrecovered,
+                        it.totalrecovered
+                    )
                 listaDataCountries.add(country)
             }
 
-            ret = DataClassCovid(dataBd.date, dataBd.newconfirmed, dataBd.totalconfirmed, dataBd.newdeaths,
-                dataBd.totaldeaths, dataBd.newrecovered,dataBd.totalrecovered, listaDataCountries)
+            ret = DataClassCovid(
+                dataBd.date, dataBd.newconfirmed, dataBd.totalconfirmed, dataBd.newdeaths,
+                dataBd.totaldeaths, dataBd.newrecovered, dataBd.totalrecovered, listaDataCountries
+            )
             return ret
         }
         else //devolver vacio
         {
-            return DataClassCovid("-","","","","","","",listOf())
+            return DataClassCovid(
+                "-",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                listOf()
+            )
         }
     }
 
@@ -148,18 +160,19 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
 
         if (listaCountry != null && listaCountry.size>0) {
             listaCountry.forEach {
-                var country :DataClassCountry = DataClassCountry(
+                var country : DataClassCountry =
+                    DataClassCountry(
 
-                    it.Date,
-                    it?.Country?:"",
-                    it?.CountryCode?:"",
-                    it?.NewConfirmed?:"",
-                    it?.TotalConfirmed?:"",
-                    it?.NewDeaths?:"",
-                    it?.TotalDeaths?:"",
-                    it?.NewRecovered?:"",
-                    it?.TotalRecovered?:""
-                )
+                        it.Date,
+                        it?.Country ?: "",
+                        it?.CountryCode ?: "",
+                        it?.NewConfirmed ?: "",
+                        it?.TotalConfirmed ?: "",
+                        it?.NewDeaths ?: "",
+                        it?.TotalDeaths ?: "",
+                        it?.NewRecovered ?: "",
+                        it?.TotalRecovered ?: ""
+                    )
                 listaDataCountries.add(country)
             }
         }

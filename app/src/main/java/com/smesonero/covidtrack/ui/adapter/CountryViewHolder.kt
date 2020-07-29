@@ -1,10 +1,10 @@
-package com.smesonero.covidtrack.ui
+package com.smesonero.covidtrack.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.smesonero.covidtrack.DataClassCountry
+import com.smesonero.covidtrack.domain_model.DataClassCountry
 import com.smesonero.covidtrack.R
 
 class CountryViewHolder(inflater: LayoutInflater, parent: ViewGroup) :

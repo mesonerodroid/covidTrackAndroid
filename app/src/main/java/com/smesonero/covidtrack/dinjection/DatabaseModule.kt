@@ -5,7 +5,6 @@ import androidx.room.Room
 import com.smesonero.covidtrack.ddbb.CovidDatabase
 import com.smesonero.covidtrack.ddbb.dao.CountryDataDao
 import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
-import com.smesonero.covidtrack.ddbb.entities.CountryDbEntity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

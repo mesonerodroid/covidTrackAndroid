@@ -1,7 +1,6 @@
-package com.smesonero.covidtrack
+package com.smesonero.covidtrack.ui.fragment
 
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,13 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.Observer
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
+import com.smesonero.covidtrack.R
 import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
-import com.smesonero.covidtrack.service.CovidRepository
+import com.smesonero.covidtrack.domain_model.DataClassCovid
 import com.smesonero.covidtrack.util.getLocalDate
 import com.smesonero.covidtrack.viewmodel.CovidViewModel
 import dagger.hilt.android.AndroidEntryPoint

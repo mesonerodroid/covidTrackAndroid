@@ -1,8 +1,4 @@
-package com.smesonero.covidtrack.ddbb.entities
-
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-
+package com.smesonero.covidtrack.ddbb.db_entities
 
 
 data class GlobalDb(

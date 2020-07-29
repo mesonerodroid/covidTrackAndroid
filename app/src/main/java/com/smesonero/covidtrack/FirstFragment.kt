@@ -1,6 +1,7 @@
 package com.smesonero.covidtrack
 
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
 import com.smesonero.covidtrack.service.CovidRepository
+import com.smesonero.covidtrack.util.getLocalDate
 import com.smesonero.covidtrack.viewmodel.CovidViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.first_fragment.*
@@ -89,6 +91,7 @@ class FirstFragment : Fragment() {
         if (data.date.equals("-")){ //no se pudo obtener información de servidor y tampoco de bbdd
             Toast.makeText(context, "ERROR AL OBTENER DATOS, COMPRUEBE CONEXIÓN", Toast.LENGTH_LONG).show()
         }
+        progress_global.visibility=View.INVISIBLE
         Log.e(TAG, "draw, date: "+ data.date)
 
         world_newconfirmed.text =  data.newConfirmed
@@ -97,6 +100,19 @@ class FirstFragment : Fragment() {
         world_totaldeaths.text = data.totalDeaths
         world_newrecovery.text = data.newRecovered
         world_totalrecovery.text = data.totalRecovered
+        date_text.text = getLocalDate(data.date)
+        animateText()
     }
+
+    private fun animateText() {
+        val duration = 1200L
+        world_newconfirmed.animate().alpha(1.0f).setDuration(duration);
+        world_totalconfirmed.animate().alpha(1.0f).setDuration(duration);
+        world_newdeaths.animate().alpha(1.0f).setDuration(duration);
+        world_totaldeaths.animate().alpha(1.0f).setDuration(duration);
+        world_newrecovery.animate().alpha(1.0f).setDuration(duration);
+        world_totalrecovery.animate().alpha(1.0f).setDuration(duration);
+    }
+
 
 }

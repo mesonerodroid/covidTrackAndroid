@@ -73,3 +73,8 @@ sin pasar los datos globales, que aquí no son necesarios ni se tienen por qué 
 para mostrar los datos la clase DataCountryList (Clase del modelo del dominio, del domain model, no utilizo directamente los DTO de retrofit o de la 
 base de datos, sino que están desacoplados de estos)
 
+metido insercion de pais uno a uno.
+
+
+falta el icono global countris e info,.
+fatta algun remtae.

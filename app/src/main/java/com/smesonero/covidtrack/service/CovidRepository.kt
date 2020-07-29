@@ -60,7 +60,6 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
 
             }
         }catch (e:Exception){
-
             //Se ha producido un error en la llamada a WS.  Obtener de base de datos.
             dataclass = obtainFromDb()
         }

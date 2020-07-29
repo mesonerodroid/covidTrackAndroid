@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-   lateinit var bottomNavigationView : BottomNavigationView
+    lateinit var bottomNavigationView : BottomNavigationView
 
     lateinit var viewModel : CovidViewModel
     override fun onCreate(savedInstanceState: Bundle?) {

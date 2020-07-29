@@ -6,19 +6,19 @@
         android:title="Global"
         app:showAsAction="always"
         android:orderInCategory="1"
-        android:icon="@drawable/ic_bar_chart"/>
+        android:icon="@drawable/ic_outline_group_work_24"/>
 
     <item android:id="@+id/secondFragment"
         android:title="Countries"
         app:showAsAction="always"
         android:orderInCategory="2"
-        android:icon="@drawable/ic_pie_chart"/>
+        android:icon="@drawable/ic_countrylist"/>
 
 
     <item android:id="@+id/thirdFragment"
-        android:title="My country"
+        android:title="Mask info"
         app:showAsAction="always"
         android:orderInCategory="2"
-        android:icon="@drawable/ic_more_horizontal"/>
+        android:icon="@drawable/ic_outline_info_24"/>
 
 </menu>

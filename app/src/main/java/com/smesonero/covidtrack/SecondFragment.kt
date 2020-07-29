@@ -13,6 +13,7 @@ import com.smesonero.covidtrack.ddbb.dao.CovidDataDao
 import com.smesonero.covidtrack.ui.CountryListAdapter
 import com.smesonero.covidtrack.viewmodel.CovidViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.first_fragment.*
 import kotlinx.android.synthetic.main.second_fragment.*
 import javax.inject.Inject
 
@@ -50,10 +51,9 @@ class SecondFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 //        viewModel = ViewModelProviders.of(this).get(SecondViewModel::class.java)
 
-        Log.e("seCOND", "onactivitycreated")
+        Log.e("SECOND", "onactivitycreated")
         viewModel.covidLIvedata.observe(viewLifecycleOwner, Observer {
 
-            //Log.e("FIRSTFRAGMENT" , "observer, cambio: "+it.isSuccessful + " "+it)
             Log.e("FIRSTFRAGMENT" , "observer, cambio: " + " "+it)
             actualizarUI(it)
         })
@@ -61,18 +61,19 @@ class SecondFragment : Fragment() {
 
     private fun actualizarUI(data: DataClassCovid) {
 
+        progress_countries.visibility=View.INVISIBLE
+
         dataCountryList = mutableListOf()
         data.countryList!!.forEach {
             dataCountryList.add(it)
         }
         dataCountryList.sortByDescending { it.totalConfirmed.toInt()}
 
-//        var sorted = dataCountryList.sortByDescending { it.TotalConfirmed }
-//        var sorted= dataCountryList.sortedByDescending { dataCountry -> dataCountry.TotalConfirmed }
         countries_recy.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = CountryListAdapter(dataCountryList)
         }
+
 
 
     }
@@ -81,15 +82,9 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.e("seCOND", "onview created")
 
-
     }
 
     private fun createDummy() {
-        //        var countryDummy0 = DataClassCountry("COUNTRY", "aa", "NEW\nCONFIRMED" , "TOTAL\n" +
-//                "CONFIRMED","NEW\n" +                "DEATHS", "TOTAL\n" +
-//                "DEATHS", "a", "a")
-//        dataCountryList.add(countryDummy0)
-
 
         var countryDummy = DataClassCountry("11","africa del sur y remotamente", "aa", "69.000" , "4.500.000","1.507", "635.000", "a", "a")
         dataCountryList.add(countryDummy)

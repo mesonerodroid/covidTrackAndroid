@@ -6,32 +6,78 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
+
     <ImageView
         android:id="@+id/imagemap"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="13dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/world1"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+
         app:layout_constraintHeight_percent="0.35"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:adjustViewBounds="true"
 
         />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
+        android:id="@+id/linearDate"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="80dp"
         android:orientation="vertical"
         android:text="Uno"
         android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagemap"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/date_text"
+                android:text=""
+                android:gravity="center"
+                android:textSize="26sp"
+                android:textColor="@color/colorBlack"
+                >
+
+            </TextView>
+
+            <ProgressBar
+                android:id="@+id/progress_global"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                >
+            </ProgressBar>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:text="Uno"
+        android:weightSum="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagemap">
 
@@ -46,6 +92,10 @@
             <TextView
                 android:id="@+id/world_newconfirmed"
                 android:layout_width="0dp"
+                android:alpha="0"
+                android:textStyle="bold"
+
+                android:fontFamily="@font/ptsans"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorBlack"
                 android:layout_weight="0.3"
@@ -60,6 +110,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:width="0dp"
+                android:textColor="@color/colorDarkerGrey"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="20dp"
                 android:text="NEW CONFIRMED"
@@ -79,10 +130,13 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
+                android:alpha="0"
                 android:width="0dp"
                 android:gravity="center_vertical|right"
                 android:paddingRight="10dp"
                 android:text=""
+                android:textStyle="bold"
+                android:fontFamily="@font/ptsans"
                 android:textColor="@color/colorBlack"
                 android:textSize="22sp" />
 
@@ -91,6 +145,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:width="0dp"
+                android:textColor="@color/colorDarkerGrey"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="20dp"
                 android:text="TOTAL CONFIRMED"
@@ -114,6 +169,9 @@
                 android:gravity="center_vertical|right"
                 android:paddingRight="10dp"
                 android:text=""
+                android:textStyle="bold"
+                android:fontFamily="@font/ptsans"
+                android:alpha="0"
                 android:textColor="@color/colorRedDark"
                 android:textSize="22sp" />
 
@@ -122,6 +180,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:width="0dp"
+                android:textColor="@color/colorDarkerGrey"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="20dp"
                 android:text="NEW DEATHS"
@@ -141,9 +200,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
                 android:width="0dp"
+                android:textStyle="bold"
+
+                android:fontFamily="@font/ptsans"
                 android:gravity="center_vertical|right"
                 android:paddingRight="10dp"
                 android:text=""
+                android:alpha="0"
                 android:textColor="@color/colorRedDark"
                 android:textSize="22sp" />
 
@@ -154,6 +217,7 @@
                 android:width="0dp"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="20dp"
+                android:textColor="@color/colorDarkerGrey"
                 android:text="TOTAL DEATHS"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -171,9 +235,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
                 android:width="0dp"
+                android:textStyle="bold"
+
                 android:gravity="center_vertical|right"
                 android:paddingRight="10dp"
                 android:text=""
+                android:fontFamily="@font/ptsans"
+                android:alpha="0"
                 android:textColor="@color/colorgreenDark"
                 android:textSize="22sp" />
 
@@ -184,6 +252,7 @@
                 android:width="0dp"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="20dp"
+                android:textColor="@color/colorDarkerGrey"
                 android:text="NEW RECOVERY"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -200,10 +269,14 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
+                android:textStyle="bold"
                 android:width="0dp"
                 android:gravity="center_vertical|right"
+                android:layout_gravity="center"
                 android:paddingRight="10dp"
                 android:text=""
+                android:fontFamily="@font/ptsans"
+                android:alpha="0"
                 android:textColor="@color/colorgreenDark"
                 android:textSize="22sp" />
 
@@ -215,6 +288,7 @@
                 android:gravity="center_vertical|left"
                 android:paddingLeft="20dp"
                 android:text="TOTAL RECOVERY"
+                android:textColor="@color/colorDarkerGrey"
                 android:textSize="20sp" />
         </LinearLayout>
 

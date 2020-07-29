@@ -15,7 +15,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.smesonero.covidtrack"
+        applicationId "com.smesonero.cvdtrack"
         minSdkVersion 26
         targetSdkVersion 29
         versionCode 1

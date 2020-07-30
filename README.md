@@ -1,4 +1,4 @@
-# Coronavirus example app
+# Covid Tracker app
 
 This application was developed to learn and show the latest advances in android development as of July 2020.
 It includes:

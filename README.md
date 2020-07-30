@@ -5,7 +5,7 @@ It includes:
 
 - MVVM pattern, with CoroutineLiveData
 - Repository pattern. Isolated access to data source. Information is obtained from webservice, if that fails it is obtained from the database.
-- Injections with Hilt. ViewModel, Repository and Daos
+- Dependency injection with Hilt. ViewModel, Repository and Daos
 - Room database. Separated domainData classes, network classes and DataSource classes.
 - Bottom navigation view and navGraph
 

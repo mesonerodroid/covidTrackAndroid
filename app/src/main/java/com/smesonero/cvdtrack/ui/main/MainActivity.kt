@@ -16,15 +16,13 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-
     @Inject
-    fun covidDao(pokeDao: CovidDataDao) {
-        Log.e("mainactovituy", "inject del dao: "+pokeDao.getAll().size)
+    fun covidDao(covidDao: CovidDataDao) {
+        Log.e("mainactovituy", "inject del dao: "+covidDao.getAll().size)
 
     }
 
     lateinit var bottomNavigationView : BottomNavigationView
-
     lateinit var viewModel : CovidViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +38,4 @@ class MainActivity : AppCompatActivity() {
         //viewModel = ViewModelProviders.of(this).get(CovidViewModel::class.java)
 
     }
-
-//    private fun loadInfo() {
-//
-//        viewModel.covidLIvedata.observe(this, Observer {
-//
-//            Log.e("MAINACTIVITY" , "observer, cambio, con sucessfull: "+it.isSuccessful + " "+it)
-//        })
-//    }
 }

@@ -14,42 +14,26 @@ import java.text.NumberFormat
 import javax.inject.Inject
 
 // antes no quería que fuera injectable, lo creaba en la factory del viewmodel
-// ahora si quiero que sea injectable, ya no uso factory
+// ahora sí quiero que sea injectable, ya no uso factory
 
 class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : CountryDataDao) {
-    // we can use the application context in init or field initialisation
+
 
     var client: CovidDtService = createRetrofitWS()
-
     var daoo = dao
-
     var countryDao = countryDao
-
-
     lateinit var db : CovidDatabase
-//    @Inject
-//    public fun CovidRepository(covidDataDao: CovidDataDao) {       //parece que se debe llamar igual
-//       // db = covidDatabase
-//        daoo = covidDataDao
-//    }
-
-//    @Inject     //no va a funcionar
-//    fun Repository(pokeDao: CovidDataDao) {
-//        Log.e("REPOSITORY", "inject del dao: "+pokeDao)
-//        daoo = pokeDao
-//    }
 
 
-    //lo suyo seria encadenar esta con el check.
+    //todo faltaría utilizar retrofit Resource
     suspend fun getAllData(): DataClassCovid
-//        try{
+
     {
-//        daoo = AppModule.db.covidDataDao()
         lateinit var dataclass: DataClassCovid
         try {
-            //Intentar obtener datos más actualizados de servidor
+
             var respuesta = client.getInfo()
-            if (respuesta.isSuccessful) {       //estaría mejor hacer un mapeo, automático.,.,
+            if (respuesta.isSuccessful) {
                 var ret: CovidInfoData? = respuesta.body()
                 dataclass = mapeoRespuesta(ret)
 
@@ -57,7 +41,7 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
                 checkUpdateInfo(dataclass)
             }
             else{   //recuperar de bbdd
-
+                dataclass = obtainFromDb()
             }
         }catch (e:Exception){
             //Se ha producido un error en la llamada a WS.  Obtener de base de datos.
@@ -68,39 +52,6 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
     }
 
 
-
-//    suspend fun getCountriesData(): List<DataClassCountry>
-////        try{
-//    {
-////        daoo = AppModule.db.covidDataDao()
-//        lateinit var dataclassCountryList: DataClassCountryList
-//        try {
-//            //Intentar obtener datos más actualizados de servidor
-//            var respuesta = client.getInfo()
-//            if (respuesta.isSuccessful) {       //estaría mejor hacer un mapeo, automático.,.,
-//                var ret: CovidInfoData? = respuesta.body()
-//                dataclassCountryList = mapeoRespuestaCountry(ret)
-//
-//                //Comprobar si insertar en base de datos, en caso de que sea más reciente que la última almacenada.
-//                checkUpdateInfo(dataclassCountryList)
-//            }
-//            else{   //recuperar de bbdd
-//
-//            }
-//        }catch (e:Exception){
-//
-//            //Se ha producido un error en la llamada a WS.  Obtener de base de datos.
-//            dataclass = obtainFromDb()
-//        }
-//
-//        return dataclass
-//    }
-
-    private fun checkUpdateInfo(dataclassCountryList: DataClassCountryList) {
-
-
-    }
-
     private fun obtainFromDb(): DataClassCovid {
 
         if (daoo.getAll().size!=0){
@@ -109,10 +60,7 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
             lateinit var ret : DataClassCovid
 
             var dataBd = daoo.getAll().get(0)
-//            var listaDataCountries : List<DataClassCountry> = listOf()
-
             var countriesDb = countryDao.getAllCountry()
-
             var listaDataCountries : MutableList<DataClassCountry> = mutableListOf()
 
             countriesDb.forEach {
@@ -189,9 +137,6 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
         )
     }
 
-//        catch (
-//        e: Exception ){
-//        Log.e("repository", "Error get data" )}
 
     fun checkUpdateInfo(infoResponse: DataClassCovid) {
 
@@ -202,12 +147,10 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
         if (daoo.getAll().size==0){
             Log.e("repository", "no hay, insertar" )
             insertData(data)
-//            covidInfInsert.Date= body?.Date
         }
         else if (true){
-//            daoo.getAll().size!=0 && daoo.getAll().get(0).date!=null && !data.date.equals(daoo.getAll().get(0).date)
 
-            Log.e("repository", "ES DISTINTA, borrar y actuali ")
+            Log.e("repository", "ES DISTINTA")
             daoo.deleteAll()
             countryDao.deleteAll()
             insertData(data)
@@ -215,7 +158,6 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
         else{
             Log.e("repository", "es la misma" )
         }
-        Log.e("repository", "333" )
     }
 
     private fun insertData(data: DataClassCovid) {
@@ -249,21 +191,36 @@ class CovidRepository @Inject constructor(dao: CovidDataDao, countryDao : Countr
             countryDao.insertCountry(countryInsert)
             countryInsertList.add(countryInsert)
         }
-//        countryDao.insertAllCountry(countryInsertList.toList())
-
-
-
     }
-//    private fun insertDataCountry(country: DataClassCountry) {
-//        var covidInfInsert = CountryDbEntity(
-//            0, country.country,
-//            country.newConfirmed,
-//            country.totalConfirmed,
-//            country.newDeaths,
-//            country.totalDeaths,
-//            country.newRecovered,
-//            country.totalRecovered
-//        )
-//        daoo.insertAll(country)
-//    }
+
+
+    /*
+suspend fun getCountriesData(): List<DataClassCountry>
+//        try{
+{
+//        daoo = AppModule.db.covidDataDao()
+    lateinit var dataclassCountryList: DataClassCountryList
+    try {
+        //Intentar obtener datos más actualizados de servidor
+        var respuesta = client.getInfo()
+        if (respuesta.isSuccessful) {       //estaría mejor hacer un mapeo, automático.,.,
+            var ret: CovidInfoData? = respuesta.body()
+            dataclassCountryList = mapeoRespuestaCountry(ret)
+
+            //Comprobar si insertar en base de datos, en caso de que sea más reciente que la última almacenada.
+            checkUpdateInfo(dataclassCountryList)
+        }
+        else{   //recuperar de bbdd
+
+        }
+    }catch (e:Exception){
+
+        //Se ha producido un error en la llamada a WS.  Obtener de base de datos.
+        dataclass = obtainFromDb()
+    }
+
+    return dataclass
+}
+
+*/
 }

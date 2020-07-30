@@ -33,33 +33,29 @@ class FirstFragment : Fragment() {
         dao = pokeDao
     }
 
-    //injeccion del view, model, a través de su factory, creando a su vez el repository
-//    val viewModel: CovidViewModel by viewModels{
-//        Log.e(TAG, "byviewmodel, obteniendo")
-//        MyViewModelFactory(this, CovidRepository(dao),
-//            null)
-//    }
-
     //INJECTION a traves de hilt, sin factory
-     val viewModel: CovidViewModel by viewModels()
+    val viewModel: CovidViewModel by viewModels()
 
+    //injection del view, model, a través de su factory, creando a su vez el repository
+    /*
+        val viewModel: CovidViewModel by viewModels{
+            Log.e(TAG, "byviewmodel, obteniendo")
+            MyViewModelFactory(this, CovidRepository(dao),
+                null)
+        }
+*/
 
+    //creándolo en la factory de viewmodel
+    /*
+        @Inject
+        fun Repository(repo: CovidRepository) {
+            Log.e("first fragment", "inject del repo: "+repo)
+            repository = repo
+        }
 
-//    private val exampleViewModel: ExampleViewModel by viewModels()
-
-
-//ahora no lo inyecto lo creo en la factory de viewmodel
-//    @Inject
-//    fun Repository(repo: CovidRepository) {
-//        Log.e("first fragment", "inject del repo: "+repo)
-//        repository = repo
-//    }
-
-//    @Inject lateinit var repository: CovidRepository
-
-
-
-//    private lateinit var viewModel: CovidViewModel
+        @Inject lateinit var repository: CovidRepository
+        private lateinit var viewModel: CovidViewModel
+    */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,11 +68,8 @@ class FirstFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 //        viewModel = ViewModelProviders.of(this).get(CovidViewModel::class.java)
 
-
-//        viewModel.setDao(dao)
         viewModel.covidLIvedata.observe(viewLifecycleOwner, Observer {
 
-            //Log.e("FIRSTFRAGMENT" , "observer, cambio: "+it.isSuccessful + " "+it)
             Log.e("FIRSTFRAGMENT" , "observer, cambio: " + " "+it)
             drawData(it)
         })
@@ -109,6 +102,4 @@ class FirstFragment : Fragment() {
         world_newrecovery.animate().alpha(1.0f).setDuration(duration);
         world_totalrecovery.animate().alpha(1.0f).setDuration(duration);
     }
-
-
 }

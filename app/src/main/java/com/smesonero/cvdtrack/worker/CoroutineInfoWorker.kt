@@ -16,15 +16,14 @@ class CoroutineInfoWorker(context: Context, params: WorkerParameters) : Coroutin
         withContext(Dispatchers.IO) {
             val jobs = (0 until 100).map {
                 async {
-
-                    Log.e("AA","EE")
-                    //downloadSynchronously("https://www.google.com")
+                    Log.e("CInfoWorker","Realiza tarea")
+                    //llamar
                 }
             }
 
             // awaitAll will throw an exception if a download fails, which CoroutineWorker will treat as a failure
             jobs.awaitAll()
-            Log.e("CORUTINE", "Despues wait all");
+            Log.e("CInfoWorker", "Realizada");
             Result.success()
         }
     }

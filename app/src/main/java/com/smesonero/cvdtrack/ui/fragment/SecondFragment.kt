@@ -26,25 +26,24 @@ class SecondFragment : Fragment() {
         fun newInstance() = SecondFragment()
     }
 
-    val TAG = "FIRST FRAGMENT"
+    val TAG = "SECOND FRAGMENT"
     lateinit var dao : CovidDataDao
     val viewModel: CovidViewModel by viewModels()
 
     @Inject
     fun covidDao(pokeDao: CovidDataDao) {
-        Log.e("first fragment", "inject del dao: "+pokeDao)
+        Log.e(TAG, "inject del dao: "+pokeDao)
         dao = pokeDao
     }
     lateinit var dataCountryList: MutableList<DataClassCountry>
+//  private lateinit var viewModel: SecondViewModel
 
-//    private lateinit var viewModel: SecondViewModel
 
     override fun onCreateView(
 
     inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.e("seCOND", "oncreateView")
 
         return inflater.inflate(R.layout.second_fragment, container, false)
     }
@@ -53,10 +52,9 @@ class SecondFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 //        viewModel = ViewModelProviders.of(this).get(SecondViewModel::class.java)
 
-        Log.e("SECOND", "onactivitycreated")
         viewModel.covidLIvedata.observe(viewLifecycleOwner, Observer {
 
-            Log.e("FIRSTFRAGMENT" , "observer, cambio: " + " "+it)
+            Log.e(TAG , "LiveData, cambio: " + " "+it)
             actualizarUI(it)
         })
     }
@@ -78,14 +76,10 @@ class SecondFragment : Fragment() {
             )
         }
 
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("seCOND", "onview created")
-
     }
 
     private fun createDummy() {
@@ -93,7 +87,7 @@ class SecondFragment : Fragment() {
         var countryDummy =
             DataClassCountry(
                 "11",
-                "africa del sur y remotamente",
+                "África del sur y remotamente",
                 "aa",
                 "69.000",
                 "4.500.000",

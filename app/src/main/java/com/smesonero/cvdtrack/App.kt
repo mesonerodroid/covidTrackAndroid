@@ -17,10 +17,6 @@ class App : Application()  {
 
     override fun onCreate() {
         super.onCreate()
-//        getDb()
+
     }
-//    public fun getDb(): CovidDatabase {
-//        dbb = CovidDatabase.getInstance(applicationContext)
-//        return dbb
-//    }
 }

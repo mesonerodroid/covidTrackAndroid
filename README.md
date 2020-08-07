@@ -21,7 +21,7 @@ Android Studio
 
 ## Google Play Link
   
-  -
+  https://play.google.com/store/apps/details?id=com.smesonero.cdata
 
 ## License
 
